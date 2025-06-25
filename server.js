@@ -1,7 +1,9 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
-import routes from './routes/studentRoutes.js';
+import routes from './routes/index.js'
+import adminRoutes from './routes/admin.js';
+import studentRoutes from './routes/studentRoutes.js';
 //import sequelize from './config/databases.js';
 
 dotenv.config();
@@ -11,6 +13,8 @@ app.use(express.json());
 
 
 app.use('/api', routes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/students', studentRoutes);
 
 app.get('/api/test', (req, res) => {
   res.send('API is working!');

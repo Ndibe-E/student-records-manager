@@ -15,36 +15,27 @@ const Admin = sequelize.define('Admin', {
     validate: {
       isEmail: true,
     },
-  },
-  password: {
+  
+    },
+    password: { // ✅ ADD THIS BLOCK
     type: DataTypes.STRING,
     allowNull: false,
   },
-  isActive: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-    },
-    resetPasswordToken: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    resetPasswordExpires: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    lastLogin: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
+  role: {
+  type: DataTypes.STRING,
+  defaultValue: 'admin', // or 'Teacher'
+},
+
   },
  {
   tableName: 'admins',
   timestamps: true,
 });
-// Hash password before saving
-Admin.beforeCreate(async (admin) => {
-  admin.password = await bcrypt.hash(admin.password, 10);
-});
+// // Hash password before saving
+// Admin.beforeCreate(async (admin) => {
+//   if (admin.password){ 
+//     admin.password = await bcrypt.hash(admin.password, 10);}
+// });
 
 // Hash password before updating
 Admin.beforeUpdate(async (admin) => {

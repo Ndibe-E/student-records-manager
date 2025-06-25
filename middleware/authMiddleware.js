@@ -30,10 +30,10 @@ export const authenticateAdmin = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
     // Check if the user is an admin
-    if (decoded.role !== 'teacher') {
+    if (decoded.role !== 'admin') {
       return res.status(403).json({
         status: false,
-        message: 'Access denied. You are not a Teacher.',
+        message: 'Access denied. You are not an admin.',
       });
     }
 

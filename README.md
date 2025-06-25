@@ -39,32 +39,39 @@ A RESTful API built with Node.js, Express, Sequelize, and MySQL for managing stu
 ## 📁 Folder Structure
 student-records-manager/
 ├── config/   # Configuration
-│   └── databases.js
-│
+│   ├── databases.js
+│   │  
 ├── controller/   # API Logic
-│   └── studentController.js
-│
+│   ├── studentController.js
+│   |
 ├── docs/    # Documentation
-│   └── swagger.js
-│
+│   ├──  swagger.js
+|   |
+│   │
 ├── middleware/  # Middleware
 │   ├── authMiddleware.js
-│   └── validate.js
-│
+│   ├──  validate.js
+│   │
 ├── models/    # Sequelize Model
-│   └── student.js
-│
+│   ├──  student.js
+│   │
 ├── routes/    # Express routes 
-│   └── studentRoutes.js
-│
+│   ├── studentRoutes.js
+│   │
 ├── node_modules/
-│
+│   │
 ├── .env.example   # Environment variable template
+│   │
 ├── .gitignore  # Git ignore rules
+│   │
 ├── package.json  # Node.js dependencies and scripts
+│   │
 ├── package-lock.json  # Dependency lock file
+│   │
 ├── README.md # This file (project overview)
+│   │
 ├── server.js   # Entry point
+│   │
 └── 
 
 
@@ -76,3 +83,35 @@ student-records-manager/
 
 ```bash
 git clone  https://github.com/Ndibe-E/student-records-manager.git
+
+
+
+
+
+
+
+
+├── backend/              # Main backend application folder
+│   ├── src/             # Source code
+│   │   ├── 
+│   │   ├── 
+│   │   ├── 
+│   │   ├── 
+│   │   ├──
+│   │   ├── 
+│   │   ├── 
+│   ├── docs/            # Documentation
+│   │   ├── Backend_Tasks.docx  # Task assignments
+│   │   ├── swagger.yaml       # API documentation
+│   │   ├── postman_collection.json # Postman config
+│   ├── tests/           # Test files
+│   │   ├── unit/        # Unit tests (e.g., event.test.js)
+│   │   ├── integration/ # Integration tests (e.g., api.test.js)
+│   ├── migrations/      # Sequelize database migrations
+│   ├── seeders/         # Seed data (e.g., admin-user.js)
+│   ├── package.json     # Node.js dependencies and scripts
+│   ├── package-lock.json # Dependency lock file
+│   ├── .env.example     # Environment variable template
+│   └── .gitignore       # Git ignore rules
+├── README.md            # This file (project overview)
+└── 

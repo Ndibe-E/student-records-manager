@@ -3,12 +3,23 @@ import Student from "../models/student.js";
 
 // Create a new student
 export const createStudent = async (req, res) => {
-    const { regNumber, fullName, email, department, level } = req.body;
+    const { 
+       regNumber,
+       fullName,
+       email,
+       department,
+       level } = req.body;
   
   try {
-    const student = await Student.create( regNumber, fullName, email, department, level);
+    const student = await Student.create( {
+       regNumber,
+       fullName,
+       email,
+       department,
+       level
+      });
 
-    if (!book) {
+    if (!student) {
     return res.status(400).json({
       status: false,
       message: "Could not create the book",
@@ -36,6 +47,14 @@ export const getStudents = async (req, res) => {
   const LIMIT = 15;
   const page = parseInt(req.query.page) || 1;
   const offset = (page - 1) * LIMIT;
+  if (page < 1) {
+    return res.status(400).json({
+      status: false,
+      message: "Page number must be greater than 0",
+      data: [],
+    });
+  }
+  
   try {
     const students = await Student.findAndCountAll({ limit: LIMIT, offset });
 
@@ -69,7 +88,7 @@ export const getStudents = async (req, res) => {
 // Get a student by ID
 export const getStudentById = async (req, res) => {
   try {
-    const student = await Student.findByPk(req.params.id);
+    const student = await Student.findByPk(req.params.studentid);
     if (!student) {
       return res.status(404).json({
         status: false,
@@ -93,7 +112,7 @@ export const getStudentById = async (req, res) => {
 // Update student details
 export const updateStudent = async (req, res) => {
   try {
-    const student = await Student.findByPk(req.params.id);
+    const student = await Student.findByPk(req.params.studentid);
     
     if (!student) {
       return res.status(404).json({
@@ -120,7 +139,7 @@ export const updateStudent = async (req, res) => {
 // Delete student
 export const deleteStudent = async (req, res) => {
   try {
-    const student = await Student.findByPk(req.params.id);
+    const student = await Student.findByPk(req.params.studentid);
     if (!student) {
       return res.status(404).json({
         status: false,
@@ -128,6 +147,7 @@ export const deleteStudent = async (req, res) => {
       });
     }
     await student.destroy();
+    
     res.status(200).json({
       status: true,
       message: 'Student deleted successfully',

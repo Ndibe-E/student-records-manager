@@ -5,12 +5,24 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const authenticateAdmin = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1];
+  const { authorization } = req.headers;
+
+  console.log("Authorization: ", authorization);
+  if (!authorization) {
+    return res.status(401).json({
+      status: false,
+      message: "Unauthorized. No Authorization header provided.",
+      data: [],
+    });
+  }
+
+  const token = authorization.split(' ')[1];
 
   if (!token) {
     return res.status(403).json({
       status: false,
       message: 'Access denied. No token provided.',
+       data: []
     });
   }
 
@@ -21,11 +33,11 @@ export const authenticateAdmin = (req, res, next) => {
     if (decoded.role !== 'teacher') {
       return res.status(403).json({
         status: false,
-        message: 'Access denied. You are not an Teacher.',
+        message: 'Access denied. You are not a Teacher.',
       });
     }
 
-    req.user = decoded.payload; 
+    req.user = decoded; 
     // Attach user info to the request object
     next();
   } catch (error) {

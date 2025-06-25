@@ -26,15 +26,16 @@ const Student = sequelize.define('Student', {
     allowNull: false,
   },
   
-  level: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      isInt: true,
-      min: 100,
-      max: 500,
+ level: {
+  type: DataTypes.INTEGER,
+  allowNull: false,
+  validate: {
+    isIn: {
+      args: [[100, 200, 300, 400, 500]],
+      msg: 'Level must be one of: 100, 200, 300, 400, or 500',
     },
   },
+}
   
 },
    { timestamps: true,

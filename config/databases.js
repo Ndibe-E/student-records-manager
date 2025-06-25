@@ -7,11 +7,11 @@ dotenv.config(); // Load environment variables from .env file
 const sequelize = new Sequelize(
   process.env.DB_NAME || 'studentsrecord_db',
   process.env.DB_USER || 'root',
-  process.env.DB_PASSWORD,
-  process.env.JWT_SECRET , // Default
+  process.env.DB_PASSWORD , // Default to empty string if not set
+  
   {
     host: process.env.DB_HOST || 'localhost', // Default to localhost if not set,
-    dialect: 'mysql',
+    dialect: process.env.DB_DIALECT || 'mysql',
     port: process.env.DB_PORT || 3306, // Default MySQL port
   }
 );
